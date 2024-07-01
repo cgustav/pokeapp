@@ -1,5 +1,3 @@
-// app.js or server.js
-
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
@@ -12,7 +10,11 @@ const isProduction = contextResolver();
 console.log("Running in production context? ", isProduction);
 
 require("dotenv").config(
-  isProduction ? {} : { path: path.join(__dirname, "..", ".env") }
+  isProduction
+    ? {
+        path: path.resolve(__dirname, ".env"),
+      }
+    : { path: path.join(__dirname, "..", ".env") }
 );
 
 const UserRepository = require("./repositories/user");
