@@ -65,6 +65,10 @@ const pool = mysql.createPool({
 const userRepo = new UserRepository(pool);
 const pokemonBattleRepo = new PokemonBattleRepository(pool);
 
+app.get("/health", async (req, res) => {
+  res.json({ status: "OK" });
+});
+
 /**
  * @swagger
  * components:
